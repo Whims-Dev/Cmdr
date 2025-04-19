@@ -168,12 +168,12 @@ end
 ]=]
 function Util.EncodeEscapedOperator(text: string, op: string): string
 	local first = op:sub(1, 1)
-	local escapedOp = op:gsub(".", "%%%1")
+	local escapedOp = op:gsub(".", "%%%" .. "%1")
 	local escapedFirst = "%" .. first
 
 	return text:gsub("(" .. escapedFirst .. "+)(" .. escapedOp .. ")", function(esc, op)
 		return (esc:sub(1, #esc - 1) .. op):gsub(".", function(char)
-			return "\\u" .. string.format("%04x", string.byte(char), 16)
+			return "\\u" .. string.format("%04x", string.byte(char))
 		end)
 	end)
 end
@@ -605,7 +605,10 @@ function Util.Mutex()
 
 		return function()
 			if #queue > 0 then
-				coroutine.resume(table.remove(queue, 1))
+				local nextThread = table.remove(queue, 1)
+				if nextThread then
+					coroutine.resume(nextThread)
+				end
 			else
 				locked = false
 			end

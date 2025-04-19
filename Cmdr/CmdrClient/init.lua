@@ -1,3 +1,5 @@
+--!nocheck
+
 local RunService = game:GetService("RunService")
 local StarterGui = game:GetService("StarterGui")
 local Players = game:GetService("Players")
@@ -83,6 +85,7 @@ do
 					return r(self.Dispatcher, ...)
 				end
 			end
+			return
 		end,
 	})
 

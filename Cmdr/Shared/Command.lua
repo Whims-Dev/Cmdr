@@ -105,6 +105,7 @@ function Command:GetLastArgument()
 			return self.Arguments[i]
 		end
 	end
+	return
 end
 
 -- Returns a table containing the parsed values for all of the arguments.
