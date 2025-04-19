@@ -152,6 +152,7 @@ return function(Cmdr)
 
 		Window:SetIsValidInput(false, "Use the help command to see all available commands.")
 		AutoComplete:Hide()
+		return
 	end
 
 	Window:UpdateLabel()

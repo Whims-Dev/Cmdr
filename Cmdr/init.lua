@@ -51,6 +51,7 @@ do
 					return r(self.Registry, ...)
 				end
 			end
+			return
 		end,
 	})
 

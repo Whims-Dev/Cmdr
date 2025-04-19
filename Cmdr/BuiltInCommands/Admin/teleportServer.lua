@@ -1,9 +1,10 @@
 return function(_, fromPlayers, destination)
 	local cframe
 
-	if typeof(destination) == "Instance" then
+	if typeof(destination) == "Instance" and destination:IsA("Player") then
 		if destination.Character and destination.Character:FindFirstChild("HumanoidRootPart") then
-			cframe = destination.Character.HumanoidRootPart.CFrame
+			local rootpart = destination.Character:FindFirstChild("HumanoidRootPart")
+			cframe = rootpart.CFrame
 		else
 			return "Target player has no character."
 		end

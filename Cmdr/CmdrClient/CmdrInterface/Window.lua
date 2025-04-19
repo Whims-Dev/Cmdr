@@ -314,6 +314,7 @@ function Window:BeginInput(input, gameProcessed)
 	else
 		self:ClearHistoryState()
 	end
+	return
 end
 
 -- Hook events
@@ -335,6 +336,7 @@ Entry.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	if Window.OnTextChanged then
 		return Window.OnTextChanged(Entry.TextBox.Text)
 	end
+	return
 end)
 
 Gui.ChildAdded:Connect(function()
